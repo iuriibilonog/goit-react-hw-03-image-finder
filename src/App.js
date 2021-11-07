@@ -48,7 +48,9 @@ class App extends Component {
   };
 
   handleChangePage = () => {
-    this.setState((prevState) => ({ page: prevState.page + 1 }));
+    this.setState((prevState) => ({
+      page: prevState.page + 1,
+    }));
     setTimeout(() => {
       window.scrollTo({
         top: document.documentElement.scrollHeight,
@@ -71,8 +73,6 @@ class App extends Component {
       <div className={s.app}>
         <Searchbar onSubmit={this.getQueryFromInput} />
 
-        {this.state.isLoading && <Loading />}
-
         {(this.state.error || this.state.status === "error") && <ErrorView />}
 
         <ImageGallery
@@ -80,7 +80,9 @@ class App extends Component {
           onModalshow={this.getItemfromClick}
         />
 
-        {this.state.images.length >= 12 && (
+        {this.state.isLoading && <Loading />}
+
+        {this.state.images.length >= 12 && !this.state.isLoading && (
           <Button onLoadMore={this.handleChangePage} />
         )}
 
