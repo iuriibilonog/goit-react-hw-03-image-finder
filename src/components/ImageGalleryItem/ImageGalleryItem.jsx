@@ -1,4 +1,5 @@
 import s from './ImageGalleryItem.module.css';
+import PropTypes from 'prop-types';
 
 const ImageGalleryItem = ({ images, onModalshow}) => {
 
@@ -17,6 +18,17 @@ const ImageGalleryItem = ({ images, onModalshow}) => {
     
     
   
+}
+
+ImageGalleryItem.propTypes = {
+  images: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      webformatURL: PropTypes.string.isRequired,
+      largeImageURL: PropTypes.string.isRequired
+    }).isRequired
+  ).isRequired,
+  onModalshow: PropTypes.func.isRequired
 }
 
 export default ImageGalleryItem;

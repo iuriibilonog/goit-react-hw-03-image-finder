@@ -70,15 +70,20 @@ class App extends Component {
     return (
       <div className={s.app}>
         <Searchbar onSubmit={this.getQueryFromInput} />
+
         {this.state.isLoading && <Loading />}
-        {this.state.status === "error" && <ErrorView />}
+
+        {(this.state.error || this.state.status === "error") && <ErrorView />}
+
         <ImageGallery
           images={this.state.images}
           onModalshow={this.getItemfromClick}
         />
+
         {this.state.images.length >= 12 && (
           <Button onLoadMore={this.handleChangePage} />
         )}
+
         {this.state.modalShow && (
           <Modal
             largePic={this.state.largeImageUrl}

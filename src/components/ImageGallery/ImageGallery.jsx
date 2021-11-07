@@ -1,6 +1,7 @@
 import ImageGalleryItem from '../ImageGalleryItem';
 import s from './ImageGallery.module.css';
 
+
 const ImageGallery = ({ images, onModalshow }) => {
 
 
@@ -10,5 +11,8 @@ const ImageGallery = ({ images, onModalshow }) => {
 </ul>
   )
 }
+
+
+
 
 export default ImageGallery;

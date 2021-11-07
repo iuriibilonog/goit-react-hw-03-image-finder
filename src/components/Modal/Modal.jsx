@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
 import s from './Modal.module.css';
+import PropTypes from 'prop-types';
 
 class Modal extends Component {
+
+  static propTypes = {
+    largePic: PropTypes.string.isRequired,
+    toggleModal: PropTypes.func.isRequired
+  }
 
 
   componentDidMount() {
@@ -26,7 +32,6 @@ class Modal extends Component {
 
 
   render() {
-    console.log(this.props.largePic)
     
   return (
     <div className={s.overlay} onClick={this.closeByClickOnOverlay}>
