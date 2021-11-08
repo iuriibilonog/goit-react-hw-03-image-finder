@@ -34,6 +34,9 @@ class App extends Component {
   };
 
   getPictures = () => {
+    if (this.state.query === "") {
+      return alert("Введите ключевое слово для поиска!)");
+    }
     this.setState({ status: null, isLoading: true });
     getDataServer(this.state.query, this.state.page)
       .then((data) =>
