@@ -39,13 +39,17 @@ class App extends Component {
     }
     this.setState({ status: null, isLoading: true });
     getDataServer(this.state.query, this.state.page)
-      .then((data) =>
+      .then((data) => {
         data.hits.length === 0
           ? this.setState({ status: "error" })
           : this.setState((prevState) => ({
               images: [...prevState.images, ...data.hits],
-            }))
-      )
+            }));
+        window.scrollTo({
+          top: document.documentElement.scrollHeight,
+          behavior: "smooth",
+        });
+      })
       .catch((err) => this.setState({ error: err }))
       .finally(() => this.setState({ isLoading: false }));
   };
@@ -54,12 +58,6 @@ class App extends Component {
     this.setState((prevState) => ({
       page: prevState.page + 1,
     }));
-    setTimeout(() => {
-      window.scrollTo({
-        top: document.documentElement.scrollHeight,
-        behavior: "smooth",
-      });
-    }, 500);
   };
 
   toggleModal = () => {
